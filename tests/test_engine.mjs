@@ -1,0 +1,5 @@
+import test from 'node:test';import assert from 'node:assert/strict';import fs from 'node:fs';import {audit} from '../docs/engine.js';
+const cases=JSON.parse(fs.readFileSync(new URL('../docs/audits.json',import.meta.url))).cases;let numeric=0,other=0;
+export function compare(a,b,p='root'){assert.equal(typeof a,typeof b,p);if(typeof a==='number'){assert.ok(Number.isFinite(a)&&Number.isFinite(b)&&Math.abs(a-b)<=1e-9*Math.max(1,Math.abs(a),Math.abs(b)),`${p}: ${a} != ${b}`);numeric++}else if(a===null||typeof a!=='object'){assert.equal(a,b,p);other++}else{assert.deepEqual(Object.keys(a).sort(),Object.keys(b).sort(),p);for(const k of Object.keys(a))compare(a[k],b[k],p+'.'+k)}}
+test('complete independent CTC reports',()=>{for(const c of cases)compare(audit(c.report.spec),c.report);console.log(JSON.stringify({cases:cases.length,numeric,other}))});
+test('reject invalid and prototype-shaped inputs',()=>{for(const s of [{},null,{symbols:['A','A'],blank:0,target:[],logits:[]},{symbols:['_','A'],blank:0,target:[0],logits:[]},{symbols:['_','A'],blank:false,target:[],logits:[]},{symbols:['_','A'],blank:0,target:[],logits:[[NaN,0]]}])assert.throws(()=>audit(s));});
