@@ -1,1 +1,1 @@
-{"name":"ctclab-evidence","private":true,"type":"module","scripts":{"test":"node --test tests/test_engine.mjs tests/test_browser.cjs"}}
+{"name":"ctclab-evidence","private":true,"type":"module","scripts":{"test":"node --test --test-concurrency=1 tests/test_engine.mjs tests/test_browser.cjs tests/test_prefix_engine.cjs tests/test_prefix_browser.cjs"}}

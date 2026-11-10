@@ -27,5 +27,9 @@ jobs:
         with:
           node-version: '22'
       - run: python tools/build_audits.py && git diff --exit-code -- docs/audits.json examples/repeat.json
+      - uses: browser-actions/setup-chrome@v1
+        id: chrome
       - run: npm test
+        env:
+          CHROME_BIN: ${{ steps.chrome.outputs.chrome-path }}
       - run: bash tools/wheel_smoke.sh

@@ -43,3 +43,18 @@ bash tools/wheel_smoke.sh
 25 Python tests include 90-digit Decimal enumeration of 90 small random controls and 300 central finite-difference logit-gradient checks. Twenty retained complete reports compare 5,764 numeric and 650 other leaves against independent scalar JavaScript. Actual Chrome verifies every displayed state/gradient/path/transcript row, all 176 complete cell records, 142 full gradient records, 449 full path records and 143 full transcript records, 176 circle positions/posteriors, 205 transition lines, exports, stale/invalid input and 320/390/1280 containment. The isolated installed-wheel check runs outside the checkout.
 
 No production-scale, speed, speech/OCR quality, causal-importance or new-algorithm claim. All data are original synthetic controls. Python uses only the standard library; the inspector uses built-in browser APIs. MIT.
+
+
+## Exact prefix-beam evidence (0.2)
+
+[Open the rational prefix inspector](https://midya8.github.io/ctclab/prefix.html) · [Method, proof and limits](PREFIX.md)
+
+The original floating-point target atlas stays unchanged. The new mode audits finite CTC prefix pruning with exact supplied rational frame laws: blank/nonblank transitions, surviving and discarded path mass, greedy versus full transcript MAP, and a sufficient unique-MAP bound. An independent native checker enumerates paths; the browser uses a separate BigInt engine. Twelve original controls include a selected case where width 4 chooses a lower-probability transcript than width 3. This is a tiny bounded search audit, not a trained recognizer, held-out speech result, new CTC algorithm, confidence estimate or scalable decoder. Strict permanent path pruning deliberately does not restore previously discarded contributions.
+
+```sh
+python -m ctclab.prefix_cli audit --input examples/prefix-selection.json --output report.json
+python -m ctclab.prefix_cli verify --input report.json
+bash tools/prefix_wheel_smoke.sh
+```
+
+The new interface accepts 2-4 symbols, 0-6 independent categorical frames and width 1-64. Every rational row sums exactly to one. Reports retain every positive candidate, transition and final transcript. Editing clears stale browser evidence. See [PREFIX.md](PREFIX.md) for recurrence, conservation proof, the L > R + D bound, source-variant boundaries, controls and independent checks.
